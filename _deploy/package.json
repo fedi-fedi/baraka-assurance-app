@@ -1,0 +1,22 @@
+﻿{
+    "name":  "baraka-assurance-app",
+    "version":  "1.0.0",
+    "private":  true,
+    "type":  "module",
+    "scripts":  {
+                    "build":  "echo skip-build",
+                    "start":  "node server/index.js"
+                },
+    "dependencies":  {
+                         "@fluentui/react-components":  "^9.74.9",
+                         "@fluentui/react-icons":  "^2.0.343",
+                         "express":  "^5.2.1",
+                         "react":  "^19.2.8",
+                         "react-dom":  "^19.2.8",
+                         "react-router-dom":  "^7.18.4",
+                         "zustand":  "^5.0.15"
+                     },
+    "engines":  {
+                    "node":  "\u003e=22"
+                }
+}
