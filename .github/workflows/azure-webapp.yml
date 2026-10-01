@@ -1,0 +1,50 @@
+name: Build and deploy to Azure Web App
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: baraka-assurance-34867
+  NODE_VERSION: '22.x'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+          cache-dependency-path: app/package-lock.json
+
+      - name: Install dependencies
+        working-directory: app
+        run: npm ci
+
+      - name: Run tests
+        working-directory: app
+        run: npm test -- --run
+
+      - name: Build
+        working-directory: app
+        run: npm run build
+
+      - name: Prepare deployment package
+        run: |
+          mkdir -p _deploy
+          cp -r app/dist _deploy/dist
+          cp -r app/server _deploy/server
+          cp app/package-lock.json _deploy/
+          node -e "const p=require('./app/package.json');const o={name:p.name,version:p.version,private:true,type:'module',scripts:{build:'echo skip',start:'node server/index.js'},dependencies:p.dependencies,engines:{node:'>=22'}};require('fs').writeFileSync('_deploy/package.json',JSON.stringify(o,null,2));"
+
+      - name: Deploy to Azure Web App
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: _deploy
