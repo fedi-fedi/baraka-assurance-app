@@ -20,7 +20,13 @@ export function filterContrats(
 }
 
 export function primeTotale(contrats: Contrat[]): number {
+  const seen = new Set<string>();
   return contrats
     .filter((c) => c.statut === StatutContrat.Actif)
+    .filter((c) => {
+      if (seen.has(c.id)) return false;
+      seen.add(c.id);
+      return true;
+    })
     .reduce((sum, c) => sum + c.primeAnnuelle, 0);
 }

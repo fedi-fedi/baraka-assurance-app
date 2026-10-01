@@ -45,6 +45,7 @@ export function SinistresPage() {
   const styles = useStyles();
   const { sinistres, contrats, addSinistre, changeSinistreStatut, deleteSinistre } = useAppStore();
   const [open, setOpen] = useState(false);
+  const [deleteTarget, setDeleteTarget] = useState<{ id: string; numero: string } | null>(null);
   const [contratId, setContratId] = useState('');
   const [dateIncident, setDateIncident] = useState(todayISO());
   const [description, setDescription] = useState('');
@@ -203,11 +204,7 @@ export function SinistresPage() {
                         appearance="subtle"
                         icon={<DeleteRegular />}
                         aria-label={`Supprimer ${s.numero}`}
-                        onClick={() => {
-                          if (confirm(`Supprimer le sinistre ${s.numero} ?`)) {
-                            deleteSinistre(s.id);
-                          }
-                        }}
+                        onClick={() => setDeleteTarget({ id: s.id, numero: s.numero })}
                       />
                     </div>
                   </TableCell>
@@ -217,6 +214,43 @@ export function SinistresPage() {
           </TableBody>
         </Table>
       )}
+
+      <Dialog
+        open={deleteTarget !== null}
+        onOpenChange={(_, data) => {
+          if (!data.open) setDeleteTarget(null);
+        }}
+      >
+        <DialogSurface>
+          <DialogBody>
+            <DialogTitle>Confirmer la suppression</DialogTitle>
+            <DialogContent>
+              {deleteTarget && (
+                <Text>
+                  Voulez-vous vraiment supprimer le sinistre <strong>{deleteTarget.numero}</strong> ?
+                  Cette action est irréversible.
+                </Text>
+              )}
+            </DialogContent>
+            <DialogActions>
+              <Button appearance="secondary" onClick={() => setDeleteTarget(null)}>
+                Annuler
+              </Button>
+              <Button
+                appearance="primary"
+                onClick={() => {
+                  if (deleteTarget) {
+                    deleteSinistre(deleteTarget.id);
+                    setDeleteTarget(null);
+                  }
+                }}
+              >
+                Supprimer
+              </Button>
+            </DialogActions>
+          </DialogBody>
+        </DialogSurface>
+      </Dialog>
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import { Card, CardHeader, Text, tokens, makeStyles } from '@fluentui/react-components';
-import type { ReactNode } from 'react';
+import type { ReactElement } from 'react';
 
 const useStyles = makeStyles({
   card: {
@@ -14,12 +14,18 @@ const useStyles = makeStyles({
   label: {
     color: tokens.colorNeutralForeground2,
   },
+  iconSlot: {
+    display: 'inline-flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: tokens.colorBrandForeground1,
+  },
 });
 
 interface KpiCardProps {
   label: string;
-  value: ReactNode;
-  icon?: ReactNode;
+  value: ReactElement | string | number;
+  icon?: ReactElement;
 }
 
 export function KpiCard({ label, value, icon }: KpiCardProps) {
@@ -27,7 +33,7 @@ export function KpiCard({ label, value, icon }: KpiCardProps) {
   return (
     <Card className={styles.card} aria-label={label}>
       <CardHeader
-        image={icon as any}
+        image={icon ? <span className={styles.iconSlot}>{icon}</span> : undefined}
         header={<Text className={styles.label}>{label}</Text>}
         description={<Text className={styles.value}>{value}</Text>}
       />

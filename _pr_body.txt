@@ -1,0 +1,24 @@
+﻿## Phases réalisées (Loop Engineering)
+
+- [x] **Phase 1 — Architect Agent** : ARCHITECTURE.md, modèle TS, diagramme Mermaid, 7 user stories
+- [x] **Phase 2 — Code Builder** : Vite + React 19 + TS strict, Fluent UI v9, React Router v7, Zustand, 5 écrans navigables, 10 clients / 20 contrats / 8 sinistres / 5 devis
+- [x] **Phase 3 — QA Agent** : 45 tests Vitest tous verts, **100 % de couverture sur les services** (statements, branches, functions, lines)
+- [x] **Phase 4 — Code Review** : revue senior détaillée dans `REVIEW.md` + correctifs Critical/High appliqués
+- [ ] **Phase 5 — DevOps** : à venir (provisioning Azure + GitHub Actions)
+
+## Validation locale
+
+- `npm run build` ✅ (TypeScript strict ok, bundle 686 KB gzip 197 KB)
+- `npm test` ✅ 45/45 passed
+- `npm run test:coverage` ✅ 100 % services
+
+## Fichiers principaux
+
+- `ARCHITECTURE.md`, `README.md`
+- `app/src/` : models / mocks / services / store / layout / components / pages
+- `app/tests/` : services + components
+- `app/server/index.js` : Express pour servir le SPA en prod
+
+## Démo
+
+5 écrans : Dashboard (KPI) · Clients (recherche) · Contrats (filtres) · Sinistres (CRUD + statut) · Devis (formulaire).
