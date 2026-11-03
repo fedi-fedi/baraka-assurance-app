@@ -8,9 +8,13 @@
 
 ## 1. Vision
 
-> 
+> *Construire devant le client, de A à Z, une application web pour Baraka Assurance : React + TypeScript, testée, revue et déployée en production sur Azure — le tout en moins d'une heure, avec GitHub Copilot comme co-pilote et un cycle d'ingénierie piloté par des agents IA spécialisés.*
 
-
+**Messages clés :**
+- Application **100 % code** (React / Vite / TS) → versionnée, portable, scalable.
+- **Loop Engineering** : chaque étape (plan → code → test → review → deploy) a son **agent dédié**.
+- **Déploiement cloud-native** sur Azure Web App avec CI/CD GitHub Actions.
+- **Traçabilité, auditabilité, reproductibilité** : rien de magique.
 
 ---
 

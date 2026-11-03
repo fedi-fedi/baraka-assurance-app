@@ -4,11 +4,9 @@ const useStyles = makeStyles({
   wrap: {
     padding: tokens.spacingHorizontalXXL,
     textAlign: 'center',
-    color: 'var(--app-muted)',
-    border: '1px dashed rgba(18, 39, 40, 0.14)',
-    borderRadius: '24px',
-    background:
-      'linear-gradient(180deg, rgba(255,252,247,0.75), rgba(245,239,231,0.7))',
+    color: tokens.colorNeutralForeground2,
+    border: `1px dashed ${tokens.colorNeutralStroke1}`,
+    borderRadius: tokens.borderRadiusLarge,
   },
 });
 
