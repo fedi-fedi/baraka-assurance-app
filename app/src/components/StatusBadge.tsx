@@ -1,7 +1,14 @@
-import { Badge } from '@fluentui/react-components';
+import { Badge, makeStyles } from '@fluentui/react-components';
 import { StatutContrat, StatutDevis, StatutSinistre } from '../models/types';
 
 type AnyStatut = StatutContrat | StatutSinistre | StatutDevis;
+
+const useStyles = makeStyles({
+  badge: {
+    fontWeight: 700,
+    letterSpacing: '-0.01em',
+  },
+});
 
 const colorMap: Record<string, 'success' | 'warning' | 'danger' | 'informative' | 'subtle'> = {
   [StatutContrat.Actif]: 'success',
@@ -17,9 +24,10 @@ const colorMap: Record<string, 'success' | 'warning' | 'danger' | 'informative' 
 };
 
 export function StatusBadge({ statut }: { statut: AnyStatut }) {
+  const styles = useStyles();
   const appearance = colorMap[statut] ?? 'subtle';
   return (
-    <Badge color={appearance} appearance="filled">
+    <Badge className={styles.badge} color={appearance} appearance="filled">
       {statut}
     </Badge>
   );

@@ -38,3 +38,8 @@ Thumbs.db
 secrets.json
 
 _timings.txt
+
+# Artefacts de déploiement locaux
+_deploy_runtime/
+*.zip
+~$*

@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { FluentProvider, webLightTheme } from '@fluentui/react-components';
+import { FluentProvider } from '@fluentui/react-components';
 import { AppLayout } from './layout/AppLayout';
 import { DashboardPage } from './pages/DashboardPage';
 import { ClientsPage } from './pages/ClientsPage';
@@ -7,10 +7,11 @@ import { ContratsPage } from './pages/ContratsPage';
 import { SinistresPage } from './pages/SinistresPage';
 import { DevisPage } from './pages/DevisPage';
 import { ErrorBoundary } from './components/ErrorBoundary';
+import { appTheme } from './design/theme';
 
 export function App() {
   return (
-    <FluentProvider theme={webLightTheme}>
+    <FluentProvider theme={appTheme}>
       <ErrorBoundary>
         <BrowserRouter>
           <Routes>

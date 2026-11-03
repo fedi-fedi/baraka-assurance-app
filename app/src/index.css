@@ -1,7 +1,24 @@
 :root {
-  font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family:
+    Inter, 'Segoe UI', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.5;
   color-scheme: light;
+  font-weight: 400;
+  --app-bg: #f5efe5;
+  --app-bg-accent: rgba(184, 132, 67, 0.22);
+  --app-surface: rgba(255, 252, 247, 0.88);
+  --app-surface-strong: #fffaf2;
+  --app-shell: #173d3c;
+  --app-shell-2: #0f2a2e;
+  --app-shell-line: rgba(255, 255, 255, 0.1);
+  --app-text: #162728;
+  --app-muted: #5e6d6e;
+  --app-line: rgba(18, 39, 40, 0.1);
+  --app-accent: #b58443;
+  --app-accent-strong: #8f6227;
+  --app-success: #2b7a63;
+  --app-danger: #a44d3f;
+  --app-warning: #9b6d2d;
 }
 
 * {
@@ -12,4 +29,35 @@ html, body, #root {
   margin: 0;
   padding: 0;
   min-height: 100vh;
+}
+
+html {
+  background:
+    radial-gradient(circle at top left, rgba(184, 132, 67, 0.12), transparent 28%),
+    radial-gradient(circle at right, rgba(25, 73, 70, 0.12), transparent 32%),
+    var(--app-bg);
+}
+
+body {
+  color: var(--app-text);
+  background: transparent;
+}
+
+body::selection {
+  background: rgba(23, 61, 60, 0.18);
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+#root {
+  isolation: isolate;
 }
